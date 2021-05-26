@@ -1,0 +1,25 @@
+{
+  "name": "redis-resistent-storage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexander-shestmintsev/redis-resistent-storage.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexander-shestmintsev/redis-resistent-storage/issues"
+  },
+  "homepage": "https://github.com/alexander-shestmintsev/redis-resistent-storage#readme",
+  "dependencies": {
+    "promisify": "0.0.3",
+    "redis": "^3.1.2",
+    "redlock": "^4.2.0",
+    "util": "^0.12.3"
+  }
+}
