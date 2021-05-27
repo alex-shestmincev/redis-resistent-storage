@@ -73,18 +73,25 @@ const redlock = new Redlock([getRedis()], {
 
 let waitingForLock = 0;
 const lockName = 'locks:processAsyncFunctionWithLock';
-const lockTtl = 30000;
+const lockTtl = 10000;
 const logPreefix = 'procLockAsync';
 async function processAsyncFunctionWithLock(asyncFunc) {
     try{
         console.log(`${logPreefix}: waiting for lock`, ++waitingForLock);
         const lock = await redlock.lock(lockName, lockTtl);
+        const lockInterval = setInterval(() => {
+            console.log('extended lock');
+            lock.extend(lockTtl);
+        }, lockTtl * 0.9);
 
         console.log(`${logPreefix}: processing`);
         const result = await asyncFunc();
 
+
+
         console.log(`${logPreefix}: done`, --waitingForLock);
 
+        clearInterval(lockInterval);
         await lock.unlock();
         return result;
     } catch (err) {

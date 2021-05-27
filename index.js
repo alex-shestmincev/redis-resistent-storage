@@ -24,7 +24,7 @@ async function remWorker() {
     console.log(`remWorker: dataInStorage`, dataInStorage, dataInStorage.length);
 
     for (let item of dataInStorage) {
-        await promiseTimeoutSec(0.5);
+        await promiseTimeoutSec(1);
     }
 
     const removed = await removeFromStorage(dataInStorage.length);
@@ -34,4 +34,4 @@ async function remWorker() {
 main();
 setInterval(() => {
     return processAsyncFunctionWithLock(remWorker);
-}, 5000)
+}, 10000)
